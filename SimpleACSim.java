@@ -1,11 +1,15 @@
 import java.io.FileNotFoundException;
 public class SimpleACSim {
 	public static void main(String[] args){
+		Circuito miCircuito;
 		try {
-			Circuito miCircuito = Circuito.generarDesdeTXT("archivo.txt");
+			miCircuito = Circuito.generarDesdeTXT("archivo.txt");
+			miCircuito.calcular();
+			miCircuito.reporte();
 		} catch(FileNotFoundException e){
 			System.out.println("Error Fatal");
 		}
+
 
 	}
 }

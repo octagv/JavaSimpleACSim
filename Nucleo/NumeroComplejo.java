@@ -8,7 +8,6 @@ public class NumeroComplejo {
 		this.real = real;
 		this.imag = imag;
 	}
-
 	public double getModulo() {
 		return Math.sqrt(this.real*this.real + this.imag*this.imag);
 	}
@@ -36,6 +35,12 @@ public class NumeroComplejo {
 	}
 
 	public String toString(){
-		return String.valueOf(this.getModulo()) + "¬" + String.valueOf(Math.toDegrees(this.getAngulo())) + "°";
+		return String.valueOf(this.round(this.getModulo(), 6)) + "¬" + String.valueOf(this.round(Math.toDegrees(this.getAngulo()), 6)) + "°";
+	}
+
+	private double round(double value, int decimales){
+		int temp = (int)value*(1<<decimales);
+		return (double)temp/(1<<decimales);
+
 	}
 }

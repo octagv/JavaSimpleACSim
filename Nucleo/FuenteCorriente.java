@@ -10,7 +10,11 @@ public class FuenteCorriente extends Fuente {
 		this.frecuencia = frecuencia;
 		this.corriente = corriente;
 	}
-
+	public FuenteCorriente(double corriente, double frecuencia, double desfaceEnGrados){
+		this.frecuencia = frecuencia;
+		double ang = Math.toRadians(desfaceEnGrados);
+		this.corriente = new NumeroComplejo(corriente*Math.cos(ang), corriente*Math.sin(ang));
+	}
 	public double getFrecuencia(){
 		return this.frecuencia;
 	}

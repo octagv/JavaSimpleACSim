@@ -1,8 +1,12 @@
-A
-B
-C
-D
-E
-F
-G
-
+V 120 0 0
+R R4 30
+R R5 20
+P
+R R3 8
+S
+R R2 30
+P
+R R6 18
+R R1 10
+S
+S

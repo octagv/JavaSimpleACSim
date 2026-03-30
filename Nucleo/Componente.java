@@ -10,4 +10,10 @@ public abstract class Componente {
 	public abstract void calcularConVoltaje(FuenteVoltaje v);
 	public abstract void calcularConCorriente(FuenteCorriente i);
 	public abstract NumeroComplejo getImpedancia(double frecuencia);
+
+	public void setNombre(String nombre){
+		if(!nombre.equals("")){
+			this.nombre = nombre;
+		}
+	}
 }
