@@ -1,4 +1,13 @@
-import java.lang.Math;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Nucleo;
+
+/**
+ *
+ * @author Octav
+ */
 public class Capacitor extends Componente {
 	private double capacitancia;
 
@@ -13,17 +22,21 @@ public class Capacitor extends Componente {
 	public void setCapacitancia(double valor){
 		if(valor > 0) this.capacitancia = valor;
 	}
+        @Override
 	public NumeroComplejo getImpedancia(double frecuencia) {
 		return new NumeroComplejo(0, -(1)/(2*Math.PI*frecuencia*this.capacitancia));
 	}
+        @Override
 	public void calcularConVoltaje(FuenteVoltaje v) {
 		this.voltaje = v.getVoltaje();
 		this.impedancia = this.getImpedancia(v.getFrecuencia());
 		this.corriente = NumeroComplejo.division(v.getVoltaje(), this.impedancia);
 	}
+        @Override
 	public void calcularConCorriente(FuenteCorriente i) {
 		this.corriente = i.getCorriente();
 		this.impedancia = this.getImpedancia(i.getFrecuencia());
 		this.voltaje = NumeroComplejo.multiplicacion(this.corriente, this.impedancia);
 	}
 }
+

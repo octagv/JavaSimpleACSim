@@ -1,9 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Nucleo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.LinkedList;
-class Circuito {
-	private LinkedList<Componente> componentes = new LinkedList<Componente>();	
+
+/**
+ *
+ * @author Octav
+ */
+public class Circuito {
+	private LinkedList<Componente> componentes = new LinkedList();	
 	private Fuente fuenteCircuito;
 	private Componente raiz;
 
@@ -35,28 +46,24 @@ class Circuito {
 		scan.nextLine();
 
 
-		LinkedList<Componente> pila = new LinkedList<Componente>();
+		LinkedList<Componente> pila = new LinkedList();
 		while (scan.hasNextLine()) {
 			opt = scan.next();
 			switch(opt) {
-				case "R":
-				pila.add(new Resistencia(scan.next(), scan.nextDouble()));
-				miCircuito.componentes.add(pila.getLast());
-				break;
-				case "L":
-				pila.add(new Inductor(scan.next(), scan.nextDouble()));
-				miCircuito.componentes.add(pila.getLast());
-				break;
-				case "C":
-				pila.add(new Capacitor(scan.next(), scan.nextDouble()));
-				miCircuito.componentes.add(pila.getLast());
-				break;
-				case "P":
-				pila.add(new Paralelo(pila.removeLast(), pila.removeLast()));
-				break;
-				case "S":
-				pila.add(new Serie(pila.removeLast(), pila.removeLast()));
-				break;
+				case "R" -> {
+                                    pila.add(new Resistencia(scan.next(), scan.nextDouble()));
+                                    miCircuito.componentes.add(pila.getLast());
+                        }
+				case "L" -> {
+                                    pila.add(new Inductor(scan.next(), scan.nextDouble()));
+                                    miCircuito.componentes.add(pila.getLast());
+                        }
+				case "C" -> {
+                                    pila.add(new Capacitor(scan.next(), scan.nextDouble()));
+                                    miCircuito.componentes.add(pila.getLast());
+                        }
+				case "P" -> pila.add(new Paralelo(pila.removeLast(), pila.removeLast()));
+				case "S" -> pila.add(new Serie(pila.removeLast(), pila.removeLast()));
 			}
 			scan.nextLine();
 		}

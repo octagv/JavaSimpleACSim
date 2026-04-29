@@ -1,0 +1,14 @@
+Nucleo\Paralelo.class
+Nucleo\Serie.class
+Nucleo\Circuito.class
+Nucleo\Fuente.class
+Nucleo\Resistencia.class
+Gui\PantallaPrincipal.class
+Nucleo\Capacitor.class
+Nucleo\NumeroComplejo.class
+SimpleACSim.class
+Nucleo\FuenteVoltaje.class
+Nucleo\Componente.class
+Nucleo\FuenteCorriente.class
+Gui\MenuLateral.class
+Nucleo\Inductor.class

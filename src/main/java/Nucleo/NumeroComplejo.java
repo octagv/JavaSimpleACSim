@@ -1,5 +1,14 @@
-import java.lang.Math;
+package Nucleo;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Octav
+ */
 public class NumeroComplejo {
 	public double real;
 	public double imag;
@@ -33,7 +42,7 @@ public class NumeroComplejo {
 	public static NumeroComplejo reciproco(NumeroComplejo a){
 		return NumeroComplejo.division(new NumeroComplejo(1,0), a);
 	}
-
+        @Override
 	public String toString(){
 		return String.valueOf(this.round(this.getModulo(), 6)) + "¬" + String.valueOf(this.round(Math.toDegrees(this.getAngulo()), 6)) + "°";
 	}

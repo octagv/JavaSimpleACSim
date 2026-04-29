@@ -1,3 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Nucleo;
+
+/**
+ *
+ * @author Octav
+ */
 public class FuenteCorriente extends Fuente {
 	private double frecuencia;
 	private NumeroComplejo corriente;

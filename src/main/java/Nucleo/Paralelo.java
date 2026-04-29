@@ -1,3 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Nucleo;
+
+/**
+ *
+ * @author Octav
+ */
 public class Paralelo extends Componente {
 	private Componente a;
 	private Componente b;
@@ -6,12 +16,14 @@ public class Paralelo extends Componente {
 		this.a = a;
 		this.b = b;
 	}
+        @Override
 	public NumeroComplejo getImpedancia(double frecuencia){
 		NumeroComplejo impedanciaA = this.a.getImpedancia(frecuencia);
 		NumeroComplejo impedanciaB = this.b.getImpedancia(frecuencia);
 		return NumeroComplejo.division(NumeroComplejo.multiplicacion(impedanciaA, impedanciaB), NumeroComplejo.suma(impedanciaA, impedanciaB));
 		
 	}
+        @Override
 	public void calcularConVoltaje(FuenteVoltaje v){
 		this.voltaje = v.getVoltaje();
 
@@ -21,6 +33,7 @@ public class Paralelo extends Componente {
 		this.a.calcularConVoltaje(v);
 		this.b.calcularConVoltaje(v);
 	}
+        @Override
 	public void calcularConCorriente(FuenteCorriente i) {
 		this.corriente = i.getCorriente();
 		NumeroComplejo impedanciaA = this.a.getImpedancia(i.getFrecuencia());
