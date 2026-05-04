@@ -8,20 +8,20 @@
  * @author Octav
  */
 import Nucleo.Circuito;
-//import Gui.PantallaPrincipal;
+import Gui.PantallaPrincipal;
 //import java.io.File;
 import java.io.FileNotFoundException;
 public class SimpleACSim {
 	public static void main(String[] args){
-            //PantallaPrincipal miPantalla = new PantallaPrincipal();
-		Circuito miCircuito;
-		try {
-			miCircuito = Circuito.generarDesdeTXT("./src/main/java/test.txt");
-			miCircuito.calcular();
-			miCircuito.reporte();
-		} catch(FileNotFoundException e){
-			System.out.println("Error Fatal");
-		}
+            PantallaPrincipal miPantalla = new PantallaPrincipal();
+            /*Circuito miCircuito;
+            try {
+                    miCircuito = Circuito.generarDesdeTXT("./src/main/java/test.txt");
+                    miCircuito.calcular();
+                    miCircuito.reporte();
+            } catch(FileNotFoundException e){
+                    System.out.println("Error Fatal");
+            } */
             /*File carpeta = new File("./src/main/java/test.txt");
 
             String[] archivos = carpeta.list();
