@@ -4,6 +4,8 @@
  */
 package Gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -14,15 +16,41 @@ import javax.swing.JMenuItem;
 public class BarraMenu extends JMenuBar {
     private JMenu menuArchivo;
     private JMenu menuHerramientas;
-    public BarraMenu() {
+    public BarraMenu(AdministradorEjecucion admin) {
         super();
+        
+        
         this.menuArchivo = new JMenu("Archivo");
         this.menuHerramientas = new JMenu("Herramientas");
+        
+        
         //JMenuItem nuevoArchivo, abrirArchivo, guardarArchivo;
-        this.menuArchivo.add(new JMenuItem("Nuevo"));
-        this.menuArchivo.add(new JMenuItem("Abrir"));
-        this.menuArchivo.add(new JMenuItem("Guardar"));
-        this.menuArchivo.add(new JMenuItem("Guardar como.."));
+        
+        
+        JMenuItem itemNuevo = new JMenuItem("Nuevo");
+        itemNuevo.addActionListener(e -> {
+            admin.nuevoArchivo();
+        });
+        
+        JMenuItem itemAbrir = new JMenuItem("Abrir");
+        itemAbrir.addActionListener(e -> {
+            admin.abrirArchivo();
+        });
+        
+        JMenuItem itemGuardar = new JMenuItem("Guardar");
+        itemGuardar.addActionListener(e -> {
+            admin.guardarArchivo();
+        });
+        
+        JMenuItem itemGuardarComo = new JMenuItem("Guardar como..");
+        itemGuardarComo.addActionListener(e -> {
+            admin.guardarComoArchivo();
+        });
+        
+        this.menuArchivo.add(itemNuevo);
+        this.menuArchivo.add(itemAbrir);
+        this.menuArchivo.add(itemGuardar);
+        this.menuArchivo.add(itemGuardarComo);
         
         this.menuHerramientas.add(new JMenuItem("Resistencia"));
         this.menuHerramientas.add(new JMenuItem("Capacitor"));

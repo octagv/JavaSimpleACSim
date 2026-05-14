@@ -18,11 +18,14 @@ import java.awt.BorderLayout;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 public class PantallaPrincipal extends JFrame {
-	private JMenuBar menubar;
-	private JMenu menuArchivo;
+        private AdministradorEjecucion admin;
+	private BarraMenu menubar;
 	public PantallaPrincipal() {
 		super("Programa");
 		this.setSize(1800,1000);
+                
+                this.admin = new AdministradorEjecucion();
+                
 		this.construirMenu();
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,9 +33,12 @@ public class PantallaPrincipal extends JFrame {
 		this.construirCentro();
 		this.getContentPane().add(new MenuLateral(), BorderLayout.LINE_END);
 		this.setVisible(true);
+                
+                
 	}
 	private void construirMenu(){
-		this.setJMenuBar(new BarraMenu());
+                this.menubar = new BarraMenu(this.admin);
+		this.setJMenuBar(this.menubar);
 	}
 	private void construirBarraHerramientas(){
 		this.getContentPane().add(new BarraHerramientas(), BorderLayout.PAGE_START);

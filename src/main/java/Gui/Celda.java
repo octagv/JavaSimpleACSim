@@ -12,6 +12,7 @@ import java.awt.*;
 public class Celda {
     protected int posX;
     protected int posY;
+    protected boolean horizontal;
     protected String nombre;
     protected ImageIcon imagen;
     public Celda(int x, int y, String nombre, ImageIcon imagen){

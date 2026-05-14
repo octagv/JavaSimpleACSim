@@ -68,5 +68,17 @@ public class Canvas extends JTable {
         });
         //Colocar Renderizador
         this.setDefaultRenderer(Object.class, new CeldaRenderer());
+
+    }
+    
+    public void agregarCelda(Celda celda, int x, int y){
+        
+        this.setValueAt(celda, x, y);
+    }
+    
+    //Para evitar que la celda sea editable
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
     }
 }

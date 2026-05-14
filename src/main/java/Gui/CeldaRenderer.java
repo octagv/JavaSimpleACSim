@@ -4,15 +4,11 @@
  */
 package Gui;
 
-import java.awt.*;
-import javax.swing.JLabel;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 
-/**
- *
- * @author Octav
- */
+
 public class CeldaRenderer extends DefaultTableCellRenderer {
 
     @Override
@@ -26,26 +22,48 @@ public class CeldaRenderer extends DefaultTableCellRenderer {
 
         JLabel label = new JLabel();
 
+        label.setOpaque(true);
+
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.CENTER);
+
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        label.setVerticalTextPosition(JLabel.CENTER);
+
+        label.setFont(new Font("Arial", Font.BOLD, 16));
+        label.setForeground(Color.BLUE);
 
         if (value instanceof Celda celda) {
 
             label.setText(celda.nombre);
 
             if (celda.imagen != null) {
-                label.setIcon(celda.imagen);
+
+                int ancho = table.getColumnModel()
+                        .getColumn(column)
+                        .getWidth();
+
+                int alto = table.getRowHeight(row);
+
+                Image imagenEscalada = celda.imagen.getImage()
+                        .getScaledInstance(
+                                ancho,
+                                alto,
+                                Image.SCALE_SMOOTH
+                        );
+
+                label.setIcon(new ImageIcon(imagenEscalada));
             }
 
         } else {
 
             label.setText("");
             label.setIcon(null);
+            label.setBackground(Color.WHITE);
         }
 
         if (isSelected) {
-            label.setBackground(Color.gray);
-            label.setOpaque(true);
+            label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         }
 
         return label;
