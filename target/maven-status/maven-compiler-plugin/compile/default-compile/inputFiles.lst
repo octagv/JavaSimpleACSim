@@ -1,7 +1,12 @@
+D:\Codigos\Java\SimpleACSim\src\main\java\Gui\AdministradorEjecucion.java
+D:\Codigos\Java\SimpleACSim\src\main\java\Gui\Almacenador.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\BarraHerramientas.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\BarraMenu.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\Canvas.java
+D:\Codigos\Java\SimpleACSim\src\main\java\Gui\Celda.java
+D:\Codigos\Java\SimpleACSim\src\main\java\Gui\CeldaRenderer.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\ConfiguradorFuente.java
+D:\Codigos\Java\SimpleACSim\src\main\java\Gui\ItemComponente.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\ListaComponentes.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\MenuLateral.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Gui\PantallaPrincipal.java

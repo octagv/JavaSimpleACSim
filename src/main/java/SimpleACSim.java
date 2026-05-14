@@ -18,7 +18,7 @@ public class SimpleACSim {
             try {
                     miCircuito = Circuito.generarDesdeTXT("./src/main/java/test.txt");
                     miCircuito.calcular();
-                    miCircuito.reporte();
+                miCircuito.reporte();
             } catch(FileNotFoundException e){
                     System.out.println("Error Fatal");
             } */
