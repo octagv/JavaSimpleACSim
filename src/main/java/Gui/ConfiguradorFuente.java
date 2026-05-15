@@ -8,15 +8,12 @@ package Gui;
  *
  * @author Octav
  */
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 
-import java.awt.Dimension;
+
+import javax.swing.border.EmptyBorder;
 
 public class ConfiguradorFuente extends JPanel {
     private char tipo;
@@ -61,17 +58,101 @@ public class ConfiguradorFuente extends JPanel {
         
         panelTabla.add(labelValor);
         panelTabla.add(this.campos[0]);
+        this.campos[0].setText("10");
+        this.valor = 10;
+        this.campos[0].addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+
+                try {
+                    double valorNuevo = Double.parseDouble(campos[0].getText());
+
+                    if (valorNuevo < 0) {
+                        throw new NumberFormatException();
+                    }
+
+                    System.out.println("Número válido: " + valorNuevo);
+                    valor = valorNuevo;
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ingrese un número decimal positivo válido"
+                    );
+
+                    campos[0].requestFocus();
+                }
+            }
+        });
+        
+        
+        
         panelTabla.add(new JLabel("Frecuencia:"));
         panelTabla.add(this.campos[1]);
+        this.frecuencia = 0;
+        this.campos[1].addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+
+                try {
+                    double valorNuevo = Double.parseDouble(campos[1].getText());
+
+                    if (valorNuevo < 0) {
+                        throw new NumberFormatException();
+                    }
+
+                    System.out.println("Número válido: " + valorNuevo);
+                    frecuencia = valorNuevo;
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ingrese un número decimal positivo válido"
+                    );
+
+                    campos[1].requestFocus();
+                }
+            }
+        });
+        
+        
+        
+        this.campos[1].setText("0");
         panelTabla.add(new JLabel("Desfase:"));
         panelTabla.add(this.campos[2]);
+        this.campos[2].setText("0");
+        this.desfase = 0;
+        this.campos[2].addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+
+                try {
+                    double valorNuevo = Double.parseDouble(campos[2].getText());
+
+                    System.out.println("Número válido: " + valorNuevo);
+                    desfase = valorNuevo;
+                    System.out.println(getLinea());
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ingrese un número decimal positivo válido"
+                    );
+
+                    campos[2].requestFocus();
+                }
+            }
+        });
+        
+        
+        
         this.setMaximumSize(new Dimension(400,300));
 
         this.add(new JLabel("Fuente AC:"), BorderLayout.NORTH);
         this.add(panelTabla, BorderLayout.NORTH);
     }
     public String getLinea(){
-        return this.tipo + String.valueOf(this.valor) + String.valueOf(this.frecuencia) + String.valueOf(this.desfase);
+        return this.tipo + " " + String.valueOf(this.valor) + " " + String.valueOf(this.frecuencia) + " " + String.valueOf(this.desfase);
     }
     public char getTipo(){
         return this.tipo;

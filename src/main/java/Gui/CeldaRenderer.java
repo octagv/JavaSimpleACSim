@@ -31,7 +31,7 @@ public class CeldaRenderer extends DefaultTableCellRenderer {
         label.setVerticalTextPosition(JLabel.CENTER);
 
         label.setFont(new Font("Arial", Font.BOLD, 16));
-        label.setForeground(Color.BLUE);
+        label.setForeground(Color.RED);
 
         if (value instanceof Celda celda) {
 

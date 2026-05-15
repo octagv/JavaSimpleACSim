@@ -39,7 +39,6 @@ public class PantallaPrincipal extends JFrame {
                 
                 
                 this.admin.genCircuitoInicial();
-                this.admin.agregarComponente(0, 0, 2, "R2");
                 
                 
 	}
