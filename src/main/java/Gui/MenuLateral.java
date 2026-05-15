@@ -13,13 +13,16 @@ import java.awt.LayoutManager;
 import javax.swing.JPanel;
 
 public class MenuLateral extends JPanel {
+        protected ConfiguradorFuente configuradorFuente;
+        protected ListaComponentes listaComponentes;
 	public MenuLateral(){
 		super();
 		LayoutManager layout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		this.setLayout(layout);
-
-		this.add(new ConfiguradorFuente());
-		this.add(new ListaComponentes());
+                this.configuradorFuente = new ConfiguradorFuente();
+		this.listaComponentes = new ListaComponentes();
+                this.add(this.configuradorFuente);
+		this.add(this.listaComponentes);
 
 	}
 }

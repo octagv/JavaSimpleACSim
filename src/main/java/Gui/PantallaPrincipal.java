@@ -20,19 +20,26 @@ import javax.swing.JScrollPane;
 public class PantallaPrincipal extends JFrame {
         private AdministradorEjecucion admin;
 	private BarraMenu menubar;
+        protected Canvas canvas;
+        protected MenuLateral menuLat;
 	public PantallaPrincipal() {
 		super("Programa");
 		this.setSize(1800,1000);
                 
-                this.admin = new AdministradorEjecucion();
+                this.admin = new AdministradorEjecucion(this);
                 
 		this.construirMenu();
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.construirBarraHerramientas();
 		this.construirCentro();
-		this.getContentPane().add(new MenuLateral(), BorderLayout.LINE_END);
+                this.menuLat = new MenuLateral();
+		this.getContentPane().add(this.menuLat, BorderLayout.LINE_END);
 		this.setVisible(true);
+                
+                
+                this.admin.genCircuitoInicial();
+                this.admin.agregarComponente(0, 0, 2, "R2");
                 
                 
 	}
@@ -44,7 +51,7 @@ public class PantallaPrincipal extends JFrame {
 		this.getContentPane().add(new BarraHerramientas(), BorderLayout.PAGE_START);
 	}
 	private void construirCentro(){
-		
-		this.getContentPane().add(new JScrollPane(new Canvas()), BorderLayout.CENTER);
+		this.canvas = new Canvas();
+		this.getContentPane().add(new JScrollPane(this.canvas), BorderLayout.CENTER);
 	}
 }

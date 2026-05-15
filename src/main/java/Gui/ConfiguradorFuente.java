@@ -70,7 +70,9 @@ public class ConfiguradorFuente extends JPanel {
         this.add(new JLabel("Fuente AC:"), BorderLayout.NORTH);
         this.add(panelTabla, BorderLayout.NORTH);
     }
-    
+    public String getLinea(){
+        return this.tipo + String.valueOf(this.valor) + String.valueOf(this.frecuencia) + String.valueOf(this.desfase);
+    }
     public char getTipo(){
         return this.tipo;
     }

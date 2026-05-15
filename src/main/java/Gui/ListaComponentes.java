@@ -34,12 +34,10 @@ public class ListaComponentes extends JPanel {
         this.tablaComponentes.add(new JLabel("Valor"));
         this.add(new JLabel("Componentes:"), BorderLayout.NORTH);
         this.add(this.tablaComponentes, BorderLayout.NORTH);
-        for (int i = 0; i < 10; i++){
-            this.agregarComponente();
-        }
     }
     //TODO: CAMBIAR ESTO
     public void agregarComponente(){
+        System.out.println("Se creo elemento");
         ItemComponente act = new ItemComponente(this.tablaComponentes);
         this.componentes.add(act);
         act.agregar();

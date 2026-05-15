@@ -14,8 +14,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class Canvas extends JTable {
     private int nroCeldas = 50;
     private int tamanhoCeldas = 60;
-    private int posX = 0;
-    private int posY = 0;
+    protected int posX = 0;
+    protected int posY = 0;
     public Canvas(){
         super(50, 50);    
         this.setCellSelectionEnabled(true);
@@ -74,6 +74,13 @@ public class Canvas extends JTable {
     public void agregarCelda(Celda celda, int x, int y){
         
         this.setValueAt(celda, x, y);
+    }
+    public void eliminarCelda(int x, int y){
+        
+        this.setValueAt(null, x, y);
+    }
+    public Celda obtenerCelda(int x, int y) {
+        return (Celda) this.getValueAt(x, y);
     }
     
     //Para evitar que la celda sea editable

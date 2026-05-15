@@ -21,7 +21,7 @@ public class ItemComponente {
     
     public ItemComponente(JPanel padre){
         this.tipo = 'R';
-        this.valor = 0;
+        this.valor = 1;
         this.nombre = "null";
         this.padre = padre;
     }
