@@ -13,20 +13,24 @@ import java.awt.Dimension;
  * @author Octav
  */
 public class BarraHerramientas extends JToolBar {
-    private int componente = 0;
-    public BarraHerramientas () {
+    private AdministradorEjecucion admin;
+    public BarraHerramientas (AdministradorEjecucion adm) {
         super("Herramientas");
+        this.admin = adm;
         JButton botonResistencia = new JButton("R");
         botonResistencia.addActionListener(e -> {
-            this.componente = 0;
+            System.out.println("Cambio algo");
+            this.admin.cambiarElemento(0);
         });
         JButton botonInductor = new JButton("L");
         botonInductor.addActionListener(e -> {
-            this.componente = 1;
+            System.out.println("Cambio algo");
+            this.admin.cambiarElemento(2);
         });
         JButton botonCapacitor = new JButton("C");
         botonCapacitor.addActionListener(e -> {
-            this.componente = 2;
+            System.out.println("Cambio algo");
+            this.admin.cambiarElemento(1);
         });
         JButton botonSerie = new JButton("S");
         JButton botonParalelo = new JButton("P");
@@ -39,8 +43,5 @@ public class BarraHerramientas extends JToolBar {
         this.add(botonParalelo);
         this.addSeparator(new Dimension(100,10));
         this.add(botonRUN);
-    }
-    public int getComponente(){
-        return this.componente;
     }
 }

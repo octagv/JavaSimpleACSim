@@ -82,6 +82,9 @@ public class Canvas extends JTable {
     public Celda obtenerCelda(int x, int y) {
         return (Celda) this.getValueAt(x, y);
     }
+    public Celda obtenerCeldaActual() {
+        return (Celda) this.getValueAt(this.posY, this.posX);
+    }
     
     //Para evitar que la celda sea editable
     @Override

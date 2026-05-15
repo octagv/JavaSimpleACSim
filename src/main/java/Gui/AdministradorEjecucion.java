@@ -6,6 +6,7 @@ package Gui;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -16,7 +17,6 @@ public class AdministradorEjecucion {
     private int contadorResistencias = 0;
     private int contadorCapacitores = 0;
     private int contadorInductores = 0;
-    private int componenteSeleccionado = 0;
     
     
     private Almacenador almacen;
@@ -84,7 +84,19 @@ public class AdministradorEjecucion {
         
     }
     // FUNCIONES BARRA DE HERRAMIENTAS
-    
+    public void cambiarElemento(int id){
+        Celda aux = this.app.canvas.obtenerCeldaActual();
+        if( (aux != null) && aux.esComponente()){
+            aux.setId(id);
+            int indice = this.almacen.buscarGraficoPorPosicion(aux.posX, aux.posY);
+            if(indice >= 0){
+                this.almacen.graficos.set(indice, aux.getLinea());
+                this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesita tener un componente seleccionado para la accion");
+        }
+    }
     
     //FUNCIONES PARA MANEJO DE CANVAS
     

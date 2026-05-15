@@ -47,7 +47,7 @@ public class PantallaPrincipal extends JFrame {
 		this.setJMenuBar(this.menubar);
 	}
 	private void construirBarraHerramientas(){
-		this.getContentPane().add(new BarraHerramientas(), BorderLayout.PAGE_START);
+		this.getContentPane().add(new BarraHerramientas(this.admin), BorderLayout.PAGE_START);
 	}
 	private void construirCentro(){
 		this.canvas = new Canvas();

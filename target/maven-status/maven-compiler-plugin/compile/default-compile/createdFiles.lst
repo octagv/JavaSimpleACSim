@@ -1,6 +1,7 @@
 Gui\ConfiguradorFuente$2.class
 Gui\Canvas.class
 Nucleo\Resistencia.class
+ACSimple.class
 Nucleo\NumeroComplejo.class
 Gui\BarraMenu.class
 Gui\ConfiguradorFuente$1.class
@@ -20,7 +21,6 @@ Gui\ItemComponente.class
 Gui\PantallaPrincipal.class
 Nucleo\Capacitor.class
 Gui\AdministradorEjecucion.class
-SimpleACSim.class
 Nucleo\FuenteVoltaje.class
 Nucleo\Componente.class
 Nucleo\FuenteCorriente.class

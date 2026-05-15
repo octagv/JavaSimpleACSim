@@ -42,10 +42,20 @@ public class Celda {
         this.nombre = nombre;
         this.imagen = IMAGENES[idImg];
     }
+    public void setId(int idImg){
+        this.id = idImg;
+        this.imagen = IMAGENES[idImg];
+    }
     public boolean esComponente(){
         return (this.id < 3);
     }
-    
+    public String getLinea(){
+        String linea = String.valueOf(this.id) + " " + String.valueOf(this.posX) + " " + String.valueOf(this.posY);
+        if (this.esComponente()){
+            linea += " " + this.nombre;
+        }
+        return linea;
+    }
     public static Celda desdeString(String dato){
         String[] datos = dato.split(" ");
         return new Celda(Integer.parseInt(datos[1]),Integer.parseInt(datos[2]),"", Integer.parseInt(datos[0]));

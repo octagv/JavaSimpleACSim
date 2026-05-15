@@ -59,4 +59,27 @@ public class Almacenador implements Serializable {
             System.out.println("Error Garrafal");
         }
     }
+    //METODOS DE BUSQUEDA
+    public int buscarGraficoPorPosicion(int x, int y){
+        int i = 0;
+        for (String dato: this.graficos){
+            String[] datos = dato.split(" ");
+            if ( (Integer.parseInt(datos[1]) == x) && (Integer.parseInt(datos[2]) == y) ) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+    public int buscarCircuitoPorNombre(String nombre){
+        int i = 0;
+        for (String dato: this.circuito){
+            String[] datos = dato.split(" ");
+            if( datos.length > 1 && datos[1].equals(nombre) ) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 }

@@ -11,7 +11,7 @@ import Nucleo.Circuito;
 import Gui.PantallaPrincipal;
 //import java.io.File;
 import java.io.FileNotFoundException;
-public class SimpleACSim {
+public class ACSimple {
 	public static void main(String[] args){
             PantallaPrincipal miPantalla = new PantallaPrincipal();
             /*Circuito miCircuito;
