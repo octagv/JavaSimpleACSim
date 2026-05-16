@@ -14,16 +14,20 @@ public abstract class Componente {
 	protected NumeroComplejo impedancia;
 	protected String nombre;
 
-	public void reporte() {
-		System.out.println("Nombre: " + this.nombre + " Impedancia: " + this.impedancia + " Voltaje: " + this.voltaje + " Corriente: " + this.corriente);
-	}
+	public String reporte() {
+            //System.out.println("Nombre: " + this.nombre + " Impedancia: " + this.impedancia + " Voltaje: " + this.voltaje + " Corriente: " + this.corriente);
+            return "Nombre: " + this.nombre + "| Impedancia: " + this.impedancia + "| Voltaje: " + this.voltaje + "| Corriente: " + this.corriente;
+        }
 	public abstract void calcularConVoltaje(FuenteVoltaje v);
 	public abstract void calcularConCorriente(FuenteCorriente i);
 	public abstract NumeroComplejo getImpedancia(double frecuencia);
 
 	public void setNombre(String nombre){
-		if(!nombre.equals("")){
-			this.nombre = nombre;
-		}
+            if(!nombre.equals("")){
+                    this.nombre = nombre;
+            }
+	}
+        public String getNombre(){
+            return this.nombre;
 	}
 }

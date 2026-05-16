@@ -26,12 +26,20 @@ public class Circuito {
 			this.raiz.calcularConVoltaje((FuenteVoltaje)this.fuenteCircuito);
 		}
 	}
-	public void reporte(){
-		System.out.println("**********REPORTE**********");
-		this.raiz.reporte();
-		for(Componente c : componentes){
-			c.reporte();
-		}
+	public String reporte(){
+            String miReporte = "";
+            String nombre = this.raiz.getNombre();
+            System.out.println("**********REPORTE**********");
+            miReporte += "**********REPORTE**********\n";
+            this.raiz.setNombre("Circuito Final");
+            miReporte += this.raiz.reporte();
+            miReporte += "\n";
+            this.raiz.setNombre(nombre);
+            for(Componente c : componentes){
+                    miReporte += c.reporte();
+                    miReporte += "\n";
+            }
+            return miReporte;
 	}
 	static public Circuito generarDesdeTXT(String nombre) throws FileNotFoundException {
 		File miArchivo = new File(nombre);
@@ -71,7 +79,7 @@ public class Circuito {
 		}
 		scan.close();
 		miCircuito.raiz = pila.removeLast();
-		miCircuito.raiz.setNombre("Circuito Total");
+		//miCircuito.raiz.setNombre("Circuito Total");
 		return miCircuito;
 	}
 }

@@ -124,6 +124,7 @@ public class AdministradorEjecucion {
         try {
             File myFile = new File("temporal.txt");
             FileWriter fw = new FileWriter(myFile);
+            this.almacen.circuito.set(0,this.app.menuLat.configuradorFuente.getLinea());
             for (String str : this.almacen.circuito){
                 fw.write(str);
                 fw.write("\n");
@@ -132,8 +133,9 @@ public class AdministradorEjecucion {
             Circuito circuito = Circuito.generarDesdeTXT("temporal.txt");
             circuito.calcular();
             //Cambiar
-            circuito.reporte();
-            myFile.delete();
+            String resultado = circuito.reporte();
+            //myFile.delete();
+            JOptionPane.showMessageDialog(null, resultado);
         } catch (IOException e){
             System.out.println("Error Garrafal");
         }

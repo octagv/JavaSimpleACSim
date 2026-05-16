@@ -89,7 +89,7 @@ public class ConfiguradorFuente extends JPanel {
         
         panelTabla.add(new JLabel("Frecuencia:"));
         panelTabla.add(this.campos[1]);
-        this.frecuencia = 0;
+        this.frecuencia = 1;
         this.campos[1].addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -97,7 +97,7 @@ public class ConfiguradorFuente extends JPanel {
                 try {
                     double valorNuevo = Double.parseDouble(campos[1].getText());
 
-                    if (valorNuevo < 0) {
+                    if (valorNuevo <= 0) {
                         throw new NumberFormatException();
                     }
 
@@ -117,7 +117,7 @@ public class ConfiguradorFuente extends JPanel {
         
         
         
-        this.campos[1].setText("0");
+        this.campos[1].setText("1");
         panelTabla.add(new JLabel("Desfase:"));
         panelTabla.add(this.campos[2]);
         this.campos[2].setText("0");

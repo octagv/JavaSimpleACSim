@@ -44,7 +44,7 @@ public class NumeroComplejo {
 	}
         @Override
 	public String toString(){
-		return String.valueOf(this.round(this.getModulo(), 6)) + "¬" + String.valueOf(this.round(Math.toDegrees(this.getAngulo()), 6)) + "°";
+		return String.format("%.6f", this.getModulo()) + "¬" + String.format("%.6f", Math.toDegrees(this.getAngulo())) + "°";
 	}
 
 	private double round(double value, int decimales){
