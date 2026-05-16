@@ -10,6 +10,7 @@ package Gui;
  */
 import javax.swing.BoxLayout;
 import java.awt.LayoutManager;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MenuLateral extends JPanel {

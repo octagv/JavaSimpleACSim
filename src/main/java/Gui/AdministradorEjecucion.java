@@ -32,11 +32,13 @@ public class AdministradorEjecucion {
     //Metodos para el Menubar de Archivo
     public void nuevoArchivo(){
         this.limpiarCanvas();
+        this.app.menuLat.listaComponentes.vaciar();
         this.almacen.vaciar();
         System.out.println("Se limpio archivo");
         this.genCircuitoInicial();
     }
     public void guardarArchivo(){
+        this.almacen.circuito.set(0, this.app.menuLat.configuradorFuente.getLinea());
         if(this.almacen.nombreArchivo.equals("")){
             this.guardarComoArchivo();
         } else {
@@ -59,6 +61,7 @@ public class AdministradorEjecucion {
             this.almacen.abrirArchivo();
             
             this.dibujarCanvas();
+            this.cargarFuente();
             
         }
     }
@@ -208,4 +211,13 @@ public class AdministradorEjecucion {
         aux = Celda.desdeString("5 7 6");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
     }  
+    
+    
+    public void cargarFuente(){
+        String[] datos = this.almacen.circuito.get(0).split(" ");
+        this.app.menuLat.configuradorFuente.setValor(Double.parseDouble(datos[1]));
+        this.app.menuLat.configuradorFuente.setFrecuencia(Double.parseDouble(datos[2]));
+        this.app.menuLat.configuradorFuente.setDesfase(Double.parseDouble(datos[3]));
+    }
+    
 }

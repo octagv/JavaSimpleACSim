@@ -29,10 +29,12 @@ public class ListaComponentes extends JPanel {
         this.setLayout(new BorderLayout());
         this.tablaComponentes = new JPanel(new GridLayout(0,3));
         this.tablaComponentes.setBorder(new EmptyBorder(10, 10, 10, 10));
+        tablaComponentes.add(new JLabel("Componentes:"));
+        tablaComponentes.add(new JLabel(" "));
+        tablaComponentes.add(new JLabel(" "));
         this.tablaComponentes.add(new JLabel("Tipo"));
         this.tablaComponentes.add(new JLabel("Nombre"));
         this.tablaComponentes.add(new JLabel("Valor"));
-        this.add(new JLabel("Componentes:"), BorderLayout.NORTH);
         this.add(this.tablaComponentes, BorderLayout.NORTH);
     }
     //TODO: CAMBIAR ESTO
@@ -40,6 +42,8 @@ public class ListaComponentes extends JPanel {
         System.out.println("Se creo elemento");
         ItemComponente act = new ItemComponente(this.tablaComponentes, nombre, tipo, valor);
         this.componentes.add(act);
+        tablaComponentes.revalidate();
+        tablaComponentes.repaint();
     }
     public ItemComponente obtenerPorNombre(String nombre){
         for(ItemComponente item : this.componentes){
@@ -48,6 +52,20 @@ public class ListaComponentes extends JPanel {
             }
         }
         return null;
+    }  
+    public void vaciar() {
+        componentes.clear();
+
+        tablaComponentes.removeAll();
+        tablaComponentes.add(new JLabel("Componentes:"));
+        tablaComponentes.add(new JLabel(" "));
+        tablaComponentes.add(new JLabel(" "));
+        tablaComponentes.add(new JLabel("Tipo"));
+        tablaComponentes.add(new JLabel("Nombre"));
+        tablaComponentes.add(new JLabel("Valor"));
+
+        tablaComponentes.revalidate();
+        tablaComponentes.repaint();
     }
     
 }

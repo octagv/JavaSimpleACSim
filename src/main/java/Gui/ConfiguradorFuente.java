@@ -154,17 +154,21 @@ public class ConfiguradorFuente extends JPanel {
     public String getLinea(){
         return this.tipo + " " + String.valueOf(this.valor) + " " + String.valueOf(this.frecuencia) + " " + String.valueOf(this.desfase);
     }
-    public char getTipo(){
-        return this.tipo;
+    public void setValor(double valor){
+        this.valor = valor;
+        this.campos[0].setText(String.valueOf(valor));
     }
-    public double getValor(){
-        return this.valor;
+    public void setFrecuencia(double valor){
+        this.frecuencia = valor;
+        this.campos[1].setText(String.valueOf(valor));
     }
-    public double getFrecuencia(){
-        return this.frecuencia;
+    public void setDesfase(double valor){
+        this.desfase = valor;
+        this.campos[2].setText(String.valueOf(valor));
     }
-    public double getDesfase(){
-        return this.desfase;
+    //TODO
+    public void setTipo(char tipo){
+        this.tipo = tipo;
     }
     
 }
