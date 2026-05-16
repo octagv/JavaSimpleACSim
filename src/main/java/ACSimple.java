@@ -21,7 +21,7 @@ public class ACSimple {
                 miCircuito.reporte();
             } catch(FileNotFoundException e){
                     System.out.println("Error Fatal");
-            } */
+            }*/
             /*File carpeta = new File("./src/main/java/test.txt");
 
             String[] archivos = carpeta.list();

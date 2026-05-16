@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  *
@@ -35,6 +36,7 @@ public class Circuito {
 	static public Circuito generarDesdeTXT(String nombre) throws FileNotFoundException {
 		File miArchivo = new File(nombre);
 		Scanner scan = new Scanner(miArchivo);
+                scan.useLocale(Locale.US);
 		Circuito miCircuito = new Circuito();
 		String opt;
 		opt = scan.next();

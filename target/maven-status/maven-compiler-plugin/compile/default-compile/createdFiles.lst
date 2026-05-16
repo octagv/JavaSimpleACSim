@@ -5,10 +5,12 @@ ACSimple.class
 Nucleo\NumeroComplejo.class
 Gui\BarraMenu.class
 Gui\ConfiguradorFuente$1.class
+Gui\ItemComponente$1.class
 Gui\ListaComponentes.class
 Gui\CeldaRenderer.class
 Gui\MenuLateral.class
 Nucleo\Inductor.class
+Gui\ItemComponente$2.class
 Nucleo\Paralelo.class
 Nucleo\Serie.class
 Gui\ConfiguradorFuente$3.class
