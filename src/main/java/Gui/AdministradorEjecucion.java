@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 
 /**
  *
@@ -133,7 +134,12 @@ public class AdministradorEjecucion {
                 this.agregarComponente(aux.posX, aux.posY, id, "e" + String.valueOf(this.contadorComponentes));
                 indice = this.almacen.buscarCircuitoPorNombre(aux.nombreId);
                 this.almacen.circuito.set(indice, "R " + "e" + String.valueOf(this.contadorComponentes) + " " + "1" );
+            } else if(aux.esComponente() && aux.esHorizontal()){
+                this.extenderHorizontal(aux.posY);
+            } else if(aux.esComponente()){
+                this.extenderVertical(aux.posX);
             }
+                
         } else {
             JOptionPane.showMessageDialog(null, "Necesita tener un componente o un cable recto seleccionado para la accion");
         }
@@ -290,8 +296,94 @@ public class AdministradorEjecucion {
         for(String str: this.almacen.graficos){
             System.out.println(str);
         }
-
-
     }
     
+    public void extenderHorizontal(int columna){
+        LinkedList<String> elementos = new LinkedList();
+        Celda aux;
+        for(String str : this.almacen.graficos){
+            
+            aux = Celda.desdeString(str);
+            if(aux.posY > columna){
+                aux = Celda.desdeString(str);
+                this.app.canvas.eliminarCelda(aux.posX, aux.posY);
+            }
+                
+        }
+        for(int i = 0; i < this.almacen.graficos.size(); i++){
+            String str = this.almacen.graficos.get(i);
+
+            aux = Celda.desdeString(str);
+            if(aux.posY == columna){
+              elementos.add(str);
+            } else if(aux.posY > columna){
+                aux.posY += 1;
+                this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
+                this.almacen.graficos.set(i, aux.getLinea());
+            }
+        }
+        for(String str : elementos){
+            String[] datos = str.split(" ");
+            int indice = this.almacen.buscarCircuitoPorNombre(datos[3]);
+            if(indice >= 0){
+                this.almacen.circuito.add(indice+1, "S");
+                this.contadorCables += 1;
+                this.almacen.circuito.add(indice+1, "K #" + String.valueOf(this.contadorCables));
+                aux = Celda.desdeString(str);
+                aux.nombreId = "#" + String.valueOf(this.contadorCables);
+                aux.nombre = "";
+                aux.posY += 1;
+                aux.setId(5);
+                this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
+                this.almacen.agregarLineaGrafico(aux.getLinea());
+            }
+        }
+    }
+    
+    public void extenderVertical(int fila){
+        LinkedList<String> elementos = new LinkedList();
+        Celda aux;
+        for(String str : this.almacen.graficos){
+            
+            aux = Celda.desdeString(str);
+            if(aux.posX > fila){
+                aux = Celda.desdeString(str);
+                this.app.canvas.eliminarCelda(aux.posX, aux.posY);
+            }
+                
+        }
+        for(int i = 0; i < this.almacen.graficos.size(); i++){
+            String str = this.almacen.graficos.get(i);
+
+            aux = Celda.desdeString(str);
+            if(aux.posX == fila){
+              elementos.add(str);
+            } else if(aux.posX > fila){
+                aux.posX += 1;
+                this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
+                this.almacen.graficos.set(i, aux.getLinea());
+            }
+        }
+        for(String str : elementos){
+            String[] datos = str.split(" ");
+            int indice = -1;
+            if(datos.length > 3){
+                indice = this.almacen.buscarCircuitoPorNombre(datos[3]);
+            } else if(datos[0].equals("4")){
+                indice = this.almacen.circuito.size() - 1;
+            }
+            if(indice >= 0){
+                this.almacen.circuito.add(indice+1, "S");
+                this.contadorCables += 1;
+                this.almacen.circuito.add(indice+1, "K #" + String.valueOf(this.contadorCables));
+                aux = Celda.desdeString(str);
+                aux.nombreId = "#" + String.valueOf(this.contadorCables);
+                aux.nombre = "";
+                aux.posX += 1;
+                aux.setId(6);
+                this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
+                this.almacen.agregarLineaGrafico(aux.getLinea());
+            }   
+        }
+    }
 }
