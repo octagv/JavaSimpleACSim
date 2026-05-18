@@ -38,7 +38,7 @@ public class ListaComponentes extends JPanel {
         this.add(this.tablaComponentes, BorderLayout.NORTH);
     }
     //TODO: CAMBIAR ESTO
-    public void agregarComponente(String nombre, int tipo, int valor){
+    public void agregarComponente(String nombre, int tipo, double valor){
         System.out.println("Se creo elemento");
         ItemComponente act = new ItemComponente(this.tablaComponentes, nombre, tipo, valor);
         this.componentes.add(act);

@@ -60,57 +60,70 @@ public class ConfiguradorFuente extends JPanel {
         panelTabla.add(this.campos[0]);
         this.campos[0].setText("10");
         this.valor = 10;
-        this.campos[0].addFocusListener(new FocusAdapter() {
+        campos[0].setInputVerifier(new InputVerifier() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public boolean verify(JComponent input) {
+
+                JTextField campo = (JTextField) input;
 
                 try {
-                    double valorNuevo = Double.parseDouble(campos[0].getText());
+
+                    double valorNuevo = Double.parseDouble(campo.getText());
 
                     if (valorNuevo < 0) {
                         throw new NumberFormatException();
                     }
 
-                    System.out.println("Número válido: " + valorNuevo);
                     valor = valorNuevo;
 
+                    return true;
+
                 } catch (NumberFormatException ex) {
+
                     JOptionPane.showMessageDialog(
                             null,
                             "Ingrese un número decimal positivo válido"
                     );
 
-                    campos[0].requestFocus();
+                    campo.selectAll();
+
+                    return false;
                 }
             }
         });
         
         
-        
         panelTabla.add(new JLabel("Frecuencia:"));
         panelTabla.add(this.campos[1]);
         this.frecuencia = 1;
-        this.campos[1].addFocusListener(new FocusAdapter() {
+        campos[1].setInputVerifier(new InputVerifier() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public boolean verify(JComponent input) {
+
+                JTextField campo = (JTextField) input;
 
                 try {
-                    double valorNuevo = Double.parseDouble(campos[1].getText());
 
-                    if (valorNuevo <= 0) {
+                    double valorNuevo = Double.parseDouble(campo.getText());
+
+                    if (valorNuevo < 0) {
                         throw new NumberFormatException();
                     }
 
-                    System.out.println("Número válido: " + valorNuevo);
                     frecuencia = valorNuevo;
 
+                    return true;
+
                 } catch (NumberFormatException ex) {
+
                     JOptionPane.showMessageDialog(
                             null,
                             "Ingrese un número decimal positivo válido"
                     );
 
-                    campos[1].requestFocus();
+                    campo.selectAll();
+
+                    return false;
                 }
             }
         });
@@ -122,24 +135,29 @@ public class ConfiguradorFuente extends JPanel {
         panelTabla.add(this.campos[2]);
         this.campos[2].setText("0");
         this.desfase = 0;
-        this.campos[2].addFocusListener(new FocusAdapter() {
+        campos[2].setInputVerifier(new InputVerifier() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public boolean verify(JComponent input) {
+
+                JTextField campo = (JTextField) input;
 
                 try {
-                    double valorNuevo = Double.parseDouble(campos[2].getText());
 
-                    System.out.println("Número válido: " + valorNuevo);
+                    double valorNuevo = Double.parseDouble(campo.getText());
                     desfase = valorNuevo;
-                    System.out.println(getLinea());
+
+                    return true;
 
                 } catch (NumberFormatException ex) {
+
                     JOptionPane.showMessageDialog(
                             null,
-                            "Ingrese un número decimal positivo válido"
+                            "Ingrese un número válido"
                     );
 
-                    campos[2].requestFocus();
+                    campo.selectAll();
+
+                    return false;
                 }
             }
         });

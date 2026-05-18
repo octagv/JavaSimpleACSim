@@ -10,7 +10,9 @@ package Gui;
  */
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.InputVerifier;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -27,7 +29,7 @@ public class ItemComponente {
     
     private String s1[] = {"Resistencia", "Capacitor", "Inductor"};
     
-    public ItemComponente(JPanel padre, String nombre, int tipo, int valor){
+    public ItemComponente(JPanel padre, String nombre, int tipo, double valor){
         this.padre = padre;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -40,7 +42,37 @@ public class ItemComponente {
         campoNombre.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                actualizar();
+                String comparador = "^[A-Za-z][^\\s]*$";
+                if(campoNombre.getText().matches(comparador)){
+                    actualizar();
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ingrese un nombre valido(Que empieze por una letra y que no contenga espacios)"
+                    );
+
+                    campoNombre.requestFocus();
+                    campoNombre.selectAll();
+                }
+                
+            }
+        });
+        campoNombre.setInputVerifier(new InputVerifier() {
+            @Override
+            public boolean verify(JComponent input) {
+                String comparador = "^[A-Za-z][^\\s]*$";
+                JTextField campo = (JTextField) input;
+                if(campo.getText().matches(comparador)){
+                    actualizar();
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ingrese un nombre valido(Que empieze por una letra y que no contenga espacios)"
+                    );
+                    campo.selectAll();
+                    return false;
+                }
             }
         });
         
@@ -48,28 +80,25 @@ public class ItemComponente {
         
         campoValor = new JTextField();
         campoValor.setText(String.valueOf(this.valor));
-        campoValor.addFocusListener(new FocusAdapter() {
+        campoValor.setInputVerifier(new InputVerifier() {
             @Override
-            public void focusLost(FocusEvent e) {
-
+            public boolean verify(JComponent input) {
+                JTextField campo = (JTextField) input;
                 try {
-                    double valorNuevo = Double.parseDouble(campoValor.getText());
-
+                    double valorNuevo = Double.parseDouble(campo.getText());
                     if (valorNuevo < 0) {
                         throw new NumberFormatException();
                     }
-
-                    System.out.println("Número válido: " + valorNuevo);
                     valor = valorNuevo;
                     actualizar();
-
+                    return true;
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(
                             null,
                             "Ingrese un número decimal positivo válido"
                     );
-
-                    campoValor.requestFocus();
+                    campo.selectAll();
+                    return false;
                 }
             }
         });

@@ -17,9 +17,8 @@ import java.io.IOException;
  * @author Octav
  */
 public class AdministradorEjecucion {
-    private int contadorResistencias = 0;
-    private int contadorCapacitores = 0;
-    private int contadorInductores = 0;
+    private int contadorComponentes = 1;
+    private int contadorCables = 2;
     
     
     private Almacenador almacen;
@@ -62,6 +61,7 @@ public class AdministradorEjecucion {
             
             this.dibujarCanvas();
             this.cargarFuente();
+            this.cargarElementos();
             
         }
     }
@@ -93,7 +93,7 @@ public class AdministradorEjecucion {
     public void cambiarElemento(int id){
         Celda aux = this.app.canvas.obtenerCeldaActual();
         if( (aux != null) && aux.esComponente()){
-            aux.setId(id);
+            if(aux.esHorizontal()) aux.setId(id + 16 ); else aux.setId(id);
             int indice = this.almacen.buscarGraficoPorPosicion(aux.posX, aux.posY);
             if(indice >= 0){
                 this.almacen.graficos.set(indice, aux.getLinea());
@@ -122,8 +122,28 @@ public class AdministradorEjecucion {
         }
     }
     
+    public void agregarSerie(){
+        Celda aux = this.app.canvas.obtenerCeldaActual();
+        if(aux != null){
+            if(aux.esCable()){
+                int indice = this.almacen.buscarGraficoPorNombre(aux.nombreId);
+                this.contadorComponentes += 1;
+                int id  = 0;
+                if(aux.esHorizontal())id = 16;
+                this.agregarComponente(aux.posX, aux.posY, id, "e" + String.valueOf(this.contadorComponentes));
+                indice = this.almacen.buscarCircuitoPorNombre(aux.nombreId);
+                this.almacen.circuito.set(indice, "R " + "e" + String.valueOf(this.contadorComponentes) + " " + "1" );
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesita tener un componente seleccionado para la accion");
+        }
+    }
+    
     //Metodo de Ejecucion
     public void ejecutarSimulacion(){
+        for (String str : this.almacen.circuito){
+                System.out.println(str);
+            }
         try {
             File myFile = new File("temporal.txt");
             FileWriter fw = new FileWriter(myFile);
@@ -185,7 +205,11 @@ public class AdministradorEjecucion {
         aux = Celda.ComponentedesdeString("0 6 7", "e1");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
         this.app.menuLat.listaComponentes.agregarComponente("e1", 0, 1);
+        this.almacen.circuito.add("K #1");
         this.almacen.circuito.add("R e1 1");
+        this.almacen.circuito.add("S");
+        this.almacen.circuito.add("K #2");
+        this.almacen.circuito.add("S");
         
         this.almacen.graficos.add("7 5 5");
         aux = Celda.desdeString("7 5 5");
@@ -203,15 +227,15 @@ public class AdministradorEjecucion {
         aux = Celda.desdeString("10 7 7");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
         
-        this.almacen.graficos.add("5 5 6");
-        aux = Celda.desdeString("5 5 6");
+        this.almacen.graficos.add("5 5 6 #1");
+        aux = Celda.desdeString("5 5 6 #1");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
         
-        this.almacen.graficos.add("5 7 6");
-        aux = Celda.desdeString("5 7 6");
+        this.almacen.graficos.add("5 7 6 #2");
+        aux = Celda.desdeString("5 7 6 #2");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
     }  
-    
+
     
     public void cargarFuente(){
         String[] datos = this.almacen.circuito.get(0).split(" ");
@@ -219,5 +243,17 @@ public class AdministradorEjecucion {
         this.app.menuLat.configuradorFuente.setFrecuencia(Double.parseDouble(datos[2]));
         this.app.menuLat.configuradorFuente.setDesfase(Double.parseDouble(datos[3]));
     }
-    
+    public void cargarElementos(){
+        this.app.menuLat.listaComponentes.vaciar();
+        for(String dato: this.almacen.circuito){
+            String[] datos = dato.split(" ");
+            if(datos[0].startsWith("R")){
+                this.app.menuLat.listaComponentes.agregarComponente(datos[1], 0, Double.parseDouble(datos[2]));
+            } else if(datos[0].startsWith("L")){
+                this.app.menuLat.listaComponentes.agregarComponente(datos[1], 1, Double.parseDouble(datos[2]));
+            } else if(datos[0].startsWith("C")){
+                this.app.menuLat.listaComponentes.agregarComponente(datos[1], 2, Double.parseDouble(datos[2]));
+            }
+        }
+    }
 }

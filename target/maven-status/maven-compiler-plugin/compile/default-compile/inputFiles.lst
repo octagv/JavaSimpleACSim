@@ -14,6 +14,7 @@ D:\Codigos\Java\SimpleACSim\src\main\java\Gui\PantallaPrincipal.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\Capacitor.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\Circuito.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\Componente.java
+D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\Cortocircuito.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\Fuente.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\FuenteCorriente.java
 D:\Codigos\Java\SimpleACSim\src\main\java\Nucleo\FuenteVoltaje.java

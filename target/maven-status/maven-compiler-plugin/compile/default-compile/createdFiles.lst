@@ -1,8 +1,10 @@
 Gui\ConfiguradorFuente$2.class
 Gui\Canvas.class
+Gui\ItemComponente$3.class
 Nucleo\Resistencia.class
 ACSimple.class
 Nucleo\NumeroComplejo.class
+Nucleo\Cortocircuito.class
 Gui\BarraMenu.class
 Gui\ConfiguradorFuente$1.class
 Gui\ItemComponente$1.class

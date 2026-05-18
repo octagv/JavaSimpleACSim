@@ -71,6 +71,17 @@ public class Almacenador implements Serializable {
         }
         return -1;
     }
+    public int buscarGraficoPorNombre(String nombre){
+        int i = 0;
+        for (String dato: this.graficos){
+            String[] datos = dato.split(" ");
+            if ( datos.length > 3 && datos[3].equals(nombre) ) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
     public int buscarCircuitoPorNombre(String nombre){
         int i = 0;
         for (String dato: this.circuito){

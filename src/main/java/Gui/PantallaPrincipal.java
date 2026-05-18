@@ -9,14 +9,9 @@ package Gui;
  * @author Octav
  */
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JToolBar;
-import javax.swing.JButton;
 import java.awt.BorderLayout;
-import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 public class PantallaPrincipal extends JFrame {
         private AdministradorEjecucion admin;
 	private BarraMenu menubar;
@@ -25,7 +20,16 @@ public class PantallaPrincipal extends JFrame {
 	public PantallaPrincipal() {
 		super("Programa");
 		this.setSize(1800,1000);
-                
+                try {
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 this.admin = new AdministradorEjecucion(this);
                 
 		this.construirMenu();

@@ -34,7 +34,7 @@ public class Circuito {
             this.raiz.setNombre("Circuito Final");
             miReporte += this.raiz.reporte();
             miReporte += "\n";
-            this.raiz.setNombre(nombre);
+            if( nombre != null) this.raiz.setNombre(nombre);
             for(Componente c : componentes){
                     miReporte += c.reporte();
                     miReporte += "\n";
@@ -70,6 +70,10 @@ public class Circuito {
                         }
 				case "C" -> {
                                     pila.add(new Capacitor(scan.next(), scan.nextDouble()));
+                                    miCircuito.componentes.add(pila.getLast());
+                        }
+                                case "K" -> {
+                                    pila.add(new Cortocircuito(scan.next()));
                                     miCircuito.componentes.add(pila.getLast());
                         }
 				case "P" -> pila.add(new Paralelo(pila.removeLast(), pila.removeLast()));

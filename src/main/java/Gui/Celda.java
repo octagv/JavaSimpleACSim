@@ -13,6 +13,7 @@ public class Celda {
     protected int posX;
     protected int posY;
     protected int id;
+    protected String nombreId;
     protected String nombre;
     protected ImageIcon imagen;
     
@@ -33,13 +34,19 @@ public class Celda {
         new ImageIcon("imagenes/tDerecha.png"),
         new ImageIcon("imagenes/tIzquierda.png"),
         new ImageIcon("imagenes/cruz.png"),
+        new ImageIcon("imagenes/resistenciaHorizontal.png"),
+        new ImageIcon("imagenes/capacitorHorizontal.png"),
+        new ImageIcon("imagenes/inductorHorizontal.png")
     };
     
     public Celda(int x, int y, String nombre, int idImg){
         this.posX = x;
         this.posY = y;
         this.id = idImg;
-        this.nombre = nombre;
+        this.nombreId = nombre;
+        if(!nombre.startsWith("#")){
+            this.nombre = nombre;
+        }
         this.imagen = IMAGENES[idImg];
     }
     public void setId(int idImg){
@@ -47,18 +54,26 @@ public class Celda {
         this.imagen = IMAGENES[idImg];
     }
     public boolean esComponente(){
-        return (this.id < 3);
+        return (this.id < 3) || (this.id > 15);
+    }
+    public boolean esCable(){
+        return (this.id == 5) || (this.id == 6);
+    }
+    public boolean esHorizontal(){
+        return (this.id == 5) || (this.id > 15);
     }
     public String getLinea(){
         String linea = String.valueOf(this.id) + " " + String.valueOf(this.posX) + " " + String.valueOf(this.posY);
-        if (this.esComponente()){
-            linea += " " + this.nombre;
+        if (this.esComponente() || this.esCable()){
+            linea += " " + this.nombreId;
         }
         return linea;
     }
     public static Celda desdeString(String dato){
         String[] datos = dato.split(" ");
-        return new Celda(Integer.parseInt(datos[1]),Integer.parseInt(datos[2]),"", Integer.parseInt(datos[0]));
+        String nom = "";
+        if (datos.length > 3) nom = datos[3];
+        return new Celda(Integer.parseInt(datos[1]),Integer.parseInt(datos[2]),nom, Integer.parseInt(datos[0]));
     }
     public static Celda ComponentedesdeString(String dato, String nombre){
         String[] datos = dato.split(" ");
