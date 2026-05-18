@@ -48,7 +48,7 @@ public class ListaComponentes extends JPanel {
     }
     public ItemComponente obtenerPorNombre(String nombre){
         for(ItemComponente item : this.componentes){
-            if(item.getNombre() == nombre){
+            if(item.getNombre().equals(nombre)){
                 return item;
             }
         }
