@@ -22,7 +22,7 @@ import java.util.LinkedList;
  * @author Octav
  */
 public class ListaComponentes extends JPanel {
-    private LinkedList<ItemComponente> componentes = new LinkedList();
+    protected LinkedList<ItemComponente> componentes = new LinkedList();
     private JPanel tablaComponentes;
     public ListaComponentes() {
         super();
@@ -38,12 +38,13 @@ public class ListaComponentes extends JPanel {
         this.add(this.tablaComponentes, BorderLayout.NORTH);
     }
     //TODO: CAMBIAR ESTO
-    public void agregarComponente(String nombre, int tipo, double valor){
+    public ItemComponente agregarComponente(String nombre, int tipo, double valor){
         System.out.println("Se creo elemento");
         ItemComponente act = new ItemComponente(this.tablaComponentes, nombre, tipo, valor);
         this.componentes.add(act);
         tablaComponentes.revalidate();
         tablaComponentes.repaint();
+        return act;
     }
     public ItemComponente obtenerPorNombre(String nombre){
         for(ItemComponente item : this.componentes){
@@ -53,6 +54,14 @@ public class ListaComponentes extends JPanel {
         }
         return null;
     }  
+    
+    public void renombrarItem(String nombre, String nombreNuevo){
+        for(ItemComponente item : this.componentes){
+            if(item.getNombre().equals(nombre)){
+                item.setNombre(nombreNuevo);
+            }
+        }
+    }
     public void vaciar() {
         componentes.clear();
 

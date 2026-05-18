@@ -1,6 +1,5 @@
 Gui\ConfiguradorFuente$2.class
 Gui\Canvas.class
-Gui\ItemComponente$3.class
 Nucleo\Resistencia.class
 ACSimple.class
 Nucleo\NumeroComplejo.class

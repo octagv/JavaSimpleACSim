@@ -22,7 +22,7 @@ public class ItemComponente {
     private JTextField campoNombre;
     private JTextField campoValor;
     private JComboBox campoTipo;
-    //private AdministradorEjecucion admin;
+    private AdministradorEjecucion admin;
     private int tipo;
     private double valor;
     private String nombre;
@@ -36,34 +36,20 @@ public class ItemComponente {
         this.valor = valor;
         this.agregar();
     }
+
+    public void setAdmin(AdministradorEjecucion admin) {
+        this.admin = admin;
+    }
     public void agregar(){
         campoNombre = new JTextField();
         campoNombre.setText(this.nombre);
-        campoNombre.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                String comparador = "^[A-Za-z][^\\s]*$";
-                if(campoNombre.getText().matches(comparador)){
-                    actualizar();
-                } else {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "Ingrese un nombre valido(Que empieze por una letra y que no contenga espacios)"
-                    );
-
-                    campoNombre.requestFocus();
-                    campoNombre.selectAll();
-                }
-                
-            }
-        });
         campoNombre.setInputVerifier(new InputVerifier() {
             @Override
             public boolean verify(JComponent input) {
                 String comparador = "^[A-Za-z][^\\s]*$";
                 JTextField campo = (JTextField) input;
                 if(campo.getText().matches(comparador)){
-                    actualizar();
+                    actualizar(campo.getText());
                     return true;
                 } else {
                     JOptionPane.showMessageDialog(
@@ -90,7 +76,7 @@ public class ItemComponente {
                         throw new NumberFormatException();
                     }
                     valor = valorNuevo;
-                    actualizar();
+                    actualizar(nombre);
                     return true;
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(
@@ -112,19 +98,23 @@ public class ItemComponente {
             } else {
                 this.tipo = 2;
             }
-        actualizar();
+        actualizar(this.nombre);
         });
         
         this.padre.add(campoTipo);
         this.padre.add(campoNombre);
         this.padre.add(campoValor);
     }
-    public void actualizar(){
-        
+    public void actualizar(String nombreNuevo){
+        this.admin.actualizarComponente(this.nombre, nombreNuevo, this.valor, this.tipo);
+        this.nombre = nombreNuevo;
     }
     
     public String getNombre(){
         return this.nombre;
+    }
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
     public void setId(int id){
         this.tipo = id;

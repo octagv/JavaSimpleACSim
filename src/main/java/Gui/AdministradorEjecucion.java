@@ -171,7 +171,7 @@ public class AdministradorEjecucion {
     public void agregarComponente(int x, int y, int id, String nombre){
         String dato = String.valueOf(id) + " " + String.valueOf(x) + " " + String.valueOf(y) + " " + nombre;
         this.almacen.graficos.add(dato);
-        this.app.menuLat.listaComponentes.agregarComponente(nombre, id, 1);
+        this.app.menuLat.listaComponentes.agregarComponente(nombre, id, 1).setAdmin(this);
         Celda aux = Celda.ComponentedesdeString(dato, nombre);
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
     }
@@ -201,10 +201,10 @@ public class AdministradorEjecucion {
         aux = Celda.desdeString("4 6 5");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
         
-        this.almacen.graficos.add("0 6 7 R1");
+        this.almacen.graficos.add("0 6 7 e1");
         aux = Celda.ComponentedesdeString("0 6 7", "e1");
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
-        this.app.menuLat.listaComponentes.agregarComponente("e1", 0, 1);
+        this.app.menuLat.listaComponentes.agregarComponente("e1", 0, 1).setAdmin(this);
         this.almacen.circuito.add("K #1");
         this.almacen.circuito.add("R e1 1");
         this.almacen.circuito.add("S");
@@ -256,4 +256,41 @@ public class AdministradorEjecucion {
             }
         }
     }
+    
+    public void actualizarComponente(String nombre, String nuevoNombre, double valor, int tipo){
+        int indice = this.almacen.buscarCircuitoPorNombre(nombre);
+        String dato = nuevoNombre + " " + String.valueOf(valor);
+        dato = switch (tipo) {
+            case 0 -> "R " + dato;
+            case 1 -> "C " + dato;
+            default -> "L " + dato;
+        };
+        if(indice >= 0) {
+            this.almacen.circuito.set(indice, dato);
+        }
+        
+        this.app.menuLat.listaComponentes.renombrarItem(nombre, nuevoNombre);
+        
+        indice = this.almacen.buscarGraficoPorNombre(nombre);
+        if(indice >= 0){
+            dato = this.almacen.graficos.get(indice);
+            if(Integer.parseInt(dato.split(" ")[0]) > 15){
+                dato = String.valueOf(tipo + 16) + dato.substring(2);
+            } else {
+                dato = String.valueOf(tipo) + dato.substring(1);
+            }
+            
+            dato = dato.replaceFirst(nombre, nuevoNombre);
+            this.almacen.graficos.set(indice, dato);
+            System.out.println(dato);
+            Celda aux = Celda.desdeString(dato);
+            this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);
+        }
+        for(String str: this.almacen.graficos){
+            System.out.println(str);
+        }
+
+
+    }
+    
 }
