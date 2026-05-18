@@ -32,13 +32,13 @@ public class BarraHerramientas extends JToolBar {
             System.out.println("Cambio algo");
             this.admin.cambiarElemento(1);
         });
-        JButton botonSerie = new JButton("S");
+        JButton botonSerie = new JButton("Colocar en Serie");
         botonSerie.addActionListener(e -> {
             System.out.println("Cambio algo");
             this.admin.agregarSerie();
         });
-        JButton botonParalelo = new JButton("P");
-        JButton botonRUN = new JButton("RUN");
+        JButton botonParalelo = new JButton("Colocar en Paralelo");
+        JButton botonRUN = new JButton("Ejecutar Simulacion");
         botonRUN.addActionListener(e -> {
             this.admin.ejecutarSimulacion();
         });

@@ -118,7 +118,7 @@ public class AdministradorEjecucion {
                 this.almacen.circuito.set(indice, linea);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Necesita tener un componente seleccionado para la accion");
+            JOptionPane.showMessageDialog(null, "Necesita tener un componente(R,L o C) seleccionado para la accion");
         }
     }
     
@@ -135,7 +135,7 @@ public class AdministradorEjecucion {
                 this.almacen.circuito.set(indice, "R " + "e" + String.valueOf(this.contadorComponentes) + " " + "1" );
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Necesita tener un componente seleccionado para la accion");
+            JOptionPane.showMessageDialog(null, "Necesita tener un componente o un cable recto seleccionado para la accion");
         }
     }
     
@@ -157,7 +157,7 @@ public class AdministradorEjecucion {
             circuito.calcular();
             //Cambiar
             String resultado = circuito.reporte();
-            //myFile.delete();
+            myFile.delete();
             JOptionPane.showMessageDialog(null, resultado);
         } catch (IOException e){
             System.out.println("Error Garrafal");
