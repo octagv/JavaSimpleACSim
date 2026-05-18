@@ -171,6 +171,7 @@ public class AdministradorEjecucion {
     public void agregarComponente(int x, int y, int id, String nombre){
         String dato = String.valueOf(id) + " " + String.valueOf(x) + " " + String.valueOf(y) + " " + nombre;
         this.almacen.graficos.add(dato);
+        if(id > 15)id -= 16;
         this.app.menuLat.listaComponentes.agregarComponente(nombre, id, 1).setAdmin(this);
         Celda aux = Celda.ComponentedesdeString(dato, nombre);
         this.app.canvas.agregarCelda(aux, aux.posX, aux.posY);

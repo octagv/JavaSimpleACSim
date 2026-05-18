@@ -98,7 +98,7 @@ public class ItemComponente {
             } else {
                 this.tipo = 2;
             }
-        actualizar(this.nombre);
+            actualizar(this.nombre);
         });
         
         this.padre.add(campoTipo);
