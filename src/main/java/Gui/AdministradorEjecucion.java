@@ -63,7 +63,8 @@ public class AdministradorEjecucion {
             this.dibujarCanvas();
             this.cargarFuente();
             this.cargarElementos();
-            
+            this.contadorComponentes = this.almacen.circuito.size();
+            this.contadorCables = this.contadorComponentes;
         }
     }
     public void guardarComoArchivo(){
@@ -138,6 +139,64 @@ public class AdministradorEjecucion {
                 this.extenderHorizontal(aux.posY);
             } else if(aux.esComponente()){
                 this.extenderVertical(aux.posX);
+            } else {
+                JOptionPane.showMessageDialog(null, "Necesita tener un componente o un cable recto seleccionado para la accion");
+            }
+                
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesita tener un componente o un cable recto seleccionado para la accion");
+        }
+    }
+    public void agregarParalelo(){
+        Celda aux = this.app.canvas.obtenerCeldaActual();
+        if(aux != null){
+            if(aux.esComponente()){
+                Celda aux1, aux2;
+                aux1 = this.app.canvas.obtenerCelda(aux.posX - 1, aux.posY);
+                aux2 = this.app.canvas.obtenerCelda(aux.posX + 1, aux.posY);
+                if((aux1.id == 8) && (aux2.id == 10)){
+                    aux1.setId(11);
+                    aux2.setId(12);
+                    
+                    this.contadorComponentes += 1;
+                    this.agregarComponente(aux.posX, aux.posY + 2, 0, "e" + String.valueOf(this.contadorComponentes));
+                    int indiceCircuito = this.almacen.buscarCircuitoPorNombre(aux.nombre);
+                    this.almacen.circuito.add(indiceCircuito + 1, "P");
+                    this.almacen.circuito.add(indiceCircuito + 1, "S");
+                    this.almacen.circuito.add(indiceCircuito + 1, "S");
+                    this.almacen.circuito.add(indiceCircuito + 1, "R " + "e" + String.valueOf(this.contadorComponentes) + " 1");
+                    int indice = this.almacen.buscarGraficoPorPosicion(aux.posX -1, aux.posY);
+                    this.app.canvas.agregarCelda(aux1, aux1.posX, aux1.posY);
+                    this.almacen.graficos.set(indice, aux1.getLinea());
+                    
+                    indice = this.almacen.buscarGraficoPorPosicion(aux.posX +1, aux.posY);
+                    this.app.canvas.agregarCelda(aux2, aux2.posX, aux2.posY);
+                    this.almacen.graficos.set(indice, aux2.getLinea());
+                    
+                    aux1 = new Celda(aux1.posX, aux1.posY + 2, "", 8);
+                    this.app.canvas.agregarCelda(aux1, aux1.posX, aux1.posY);
+                    this.almacen.agregarLineaGrafico(aux1.getLinea());
+                    
+                    aux2 = new Celda(aux2.posX, aux2.posY + 2, "", 10);
+                    this.app.canvas.agregarCelda(aux2, aux2.posX, aux2.posY);
+                    this.almacen.agregarLineaGrafico(aux2.getLinea());
+                    
+                    this.contadorCables += 1;
+                    aux1 = new Celda(aux1.posX, aux1.posY - 1, "#" + String.valueOf(this.contadorCables), 5);
+                    this.app.canvas.agregarCelda(aux1, aux1.posX, aux1.posY);
+                    this.almacen.agregarLineaGrafico(aux1.getLinea());
+                    this.almacen.circuito.add(indiceCircuito + 1, "K " + "#" + String.valueOf(this.contadorCables));
+                    
+                    this.contadorCables += 1;
+                    aux2 = new Celda(aux2.posX, aux2.posY - 1, "#" + String.valueOf(this.contadorCables), 5);
+                    this.app.canvas.agregarCelda(aux2, aux2.posX, aux2.posY);
+                    this.almacen.agregarLineaGrafico(aux2.getLinea());
+                    this.almacen.circuito.add(indiceCircuito + 1, "K " + "#" + String.valueOf(this.contadorCables));
+                    
+                    
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Necesita tener un componente o un cable recto seleccionado para la accion");
             }
                 
         } else {

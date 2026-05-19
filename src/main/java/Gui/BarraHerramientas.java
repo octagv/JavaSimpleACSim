@@ -39,7 +39,7 @@ public class BarraHerramientas extends JToolBar {
         });
         JButton botonParalelo = new JButton("Colocar en Paralelo");
         botonParalelo.addActionListener(e -> {
-            this.admin.extenderVertical(6);
+            this.admin.agregarParalelo();
         });
  
         JButton botonRUN = new JButton("Ejecutar Simulacion");
