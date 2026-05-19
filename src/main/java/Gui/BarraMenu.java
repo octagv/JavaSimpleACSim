@@ -70,35 +70,35 @@ public class BarraMenu extends JMenuBar {
         itemResistencia.addActionListener(e -> {
             admin.cambiarElemento(0);
         });
-        itemResistencia.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0));
+        itemResistencia.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.SHIFT_DOWN_MASK));
         this.menuHerramientas.add(itemResistencia);
         
         JMenuItem itemInductor = new JMenuItem("Inductor");
         itemInductor.addActionListener(e -> {
             admin.cambiarElemento(2);
         });
-        itemInductor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0));        
+        itemInductor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, InputEvent.SHIFT_DOWN_MASK));        
         this.menuHerramientas.add(itemInductor);
         
         JMenuItem itemCapacitor = new JMenuItem("Capacitor");
         itemCapacitor.addActionListener(e -> {
             admin.cambiarElemento(1);
         });
-        itemCapacitor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0));
+        itemCapacitor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, InputEvent.SHIFT_DOWN_MASK));
         this.menuHerramientas.add(itemCapacitor);
         
         JMenuItem itemSerie = new JMenuItem("agregar Serie");
         itemSerie.addActionListener(e -> {
             admin.agregarSerie();
         });
-        itemSerie.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
+        itemSerie.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_DOWN_MASK));
         this.menuHerramientas.add(itemSerie);
         
         JMenuItem itemParalelo = new JMenuItem("Agregar Paralelo");
         itemParalelo.addActionListener(e -> {
             admin.agregarParalelo();
         });
-        itemParalelo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
+        itemParalelo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.SHIFT_DOWN_MASK));
         this.menuHerramientas.add(itemParalelo);
         
         this.add(this.menuArchivo);

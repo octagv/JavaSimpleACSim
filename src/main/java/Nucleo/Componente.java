@@ -18,6 +18,10 @@ public abstract class Componente {
             //System.out.println("Nombre: " + this.nombre + " Impedancia: " + this.impedancia + " Voltaje: " + this.voltaje + " Corriente: " + this.corriente);
             return "Nombre: " + this.nombre + "| Impedancia: " + this.impedancia + "| Voltaje: " + this.voltaje + "| Corriente: " + this.corriente;
         }
+        public ResultadoReporte reporteObjeto() {
+            //System.out.println("Nombre: " + this.nombre + " Impedancia: " + this.impedancia + " Voltaje: " + this.voltaje + " Corriente: " + this.corriente);
+            return new ResultadoReporte(this.nombre, this.voltaje, this.corriente, this.impedancia);
+        }
 	public abstract void calcularConVoltaje(FuenteVoltaje v);
 	public abstract void calcularConCorriente(FuenteCorriente i);
 	public abstract NumeroComplejo getImpedancia(double frecuencia);

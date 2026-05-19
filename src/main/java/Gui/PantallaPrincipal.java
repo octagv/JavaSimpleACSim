@@ -10,6 +10,7 @@ package Gui;
  */
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 public class PantallaPrincipal extends JFrame {
@@ -20,6 +21,7 @@ public class PantallaPrincipal extends JFrame {
 	public PantallaPrincipal() {
 		super("Programa");
 		this.setSize(1800,1000);
+                UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.PLAIN, 12));
                 try {
                     for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                         if ("Nimbus".equals(info.getName())) {

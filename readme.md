@@ -3,5 +3,5 @@ Esta hecho por el alumno Octavio Adrian Gauto Vera.
 El proyecto trata sobre un simulador simple de circuitos RLC en corriente alterna, 
 cubre analisis simples de impedancia, corriente y voltaje en cada elemento.
 
-Diagrama UML del proyecto: https://drive.google.com/file/d/1z216gULG7epFZdb8BFpGK3Uz74aWVor6/view?usp=drive_link
+Diagrama UML del proyecto: https://drive.google.com/file/d/1YlUVFHIaKpXrsk9US5YDLmIGoUF8Emww/view?usp=sharing
 

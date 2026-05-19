@@ -11,6 +11,7 @@ Gui\ListaComponentes.class
 Gui\CeldaRenderer.class
 Gui\MenuLateral.class
 Nucleo\Inductor.class
+Nucleo\ResultadoReporte.class
 Gui\ItemComponente$2.class
 Nucleo\Paralelo.class
 Nucleo\Serie.class

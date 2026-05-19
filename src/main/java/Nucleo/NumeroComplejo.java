@@ -42,9 +42,12 @@ public class NumeroComplejo {
 	public static NumeroComplejo reciproco(NumeroComplejo a){
 		return NumeroComplejo.division(new NumeroComplejo(1,0), a);
 	}
+        public static NumeroComplejo conjugado(NumeroComplejo a) {
+            return new NumeroComplejo(a.real, - a.imag);
+        }
         @Override
 	public String toString(){
-		return String.format("%.6f", this.getModulo()) + "¬" + String.format("%.6f", Math.toDegrees(this.getAngulo())) + "°";
+		return String.format("%.6f", this.getModulo()) + "<" + String.format("%.6f", Math.toDegrees(this.getAngulo())) + "°";
 	}
 
 	private double round(double value, int decimales){

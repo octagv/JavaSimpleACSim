@@ -41,6 +41,33 @@ public class Circuito {
             }
             return miReporte;
 	}
+        public String reporteCompleto(){
+            String miReporte = "";
+            String nombre = this.raiz.getNombre();
+            miReporte += "RESULTADOS OBTENIDOS\n";
+            miReporte += String.format("%-16s", "Nombre") + " | " + String.format("%-50s", "Voltaje") + " | " + String.format("%-50s", "Corriente") + " | " + String.format("%-50s", "Impedancia") + "\n";
+            this.raiz.setNombre("Circuito");
+            ResultadoReporte report = this.raiz.reporteObjeto();
+            miReporte += String.format(
+                "%-16s | %-50s | %-50s | %-50s%n",
+                report.getNombre(),
+                report.getVoltaje(),
+                report.getCorriente(),
+                report.getImpedancia()
+            );
+            if( nombre != null) this.raiz.setNombre(nombre);
+            for(Componente c : componentes){
+                    report = c.reporteObjeto();
+                    if(!c.nombre.startsWith("#")) miReporte += String.format(
+                        "%-16s | %-50s | %-50s | %-50s%n",
+                        report.getNombre(),
+                        report.getVoltaje(),
+                        report.getCorriente(),
+                        report.getImpedancia()
+                    );
+            }
+            return miReporte;
+        }
 	static public Circuito generarDesdeTXT(String nombre) throws FileNotFoundException {
 		File miArchivo = new File(nombre);
 		Scanner scan = new Scanner(miArchivo);

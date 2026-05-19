@@ -221,7 +221,7 @@ public class AdministradorEjecucion {
             Circuito circuito = Circuito.generarDesdeTXT("temporal.txt");
             circuito.calcular();
             //Cambiar
-            String resultado = circuito.reporte();
+            String resultado = circuito.reporteCompleto();
             myFile.delete();
             JOptionPane.showMessageDialog(null, resultado);
         } catch (IOException e){
